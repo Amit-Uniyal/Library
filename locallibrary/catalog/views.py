@@ -6,6 +6,6 @@ from datetime import datetime
 
 def index(request):
 	now = datetime.now()
-	html = "<h2>It is now %s.</h2>"  % now
+	html = "<h2>It is now %s.</h2>"  % now.ctime()
 	return HttpResponse(html)
   
