@@ -3,16 +3,31 @@ from .models import Book, Author, Genre, BookInstance
 from django.views import generic
 
 
+class BookDetailView(generic.DetailView):
+    model = Book
+
 class BookListView(generic.ListView):
 	model = Book
+	paginate_by = 2
+
 	# context_object_name = 'my_book_list'   # your own name for the list as a template variable
-	# queryset = Book.objects.filter(title__icontains='war')[:5] # Get 5 books containing the title war
-	# template_name = 'catalog/my_books.html'  # Specify your own template name/location
+	# queryset = Book.objects.filter(title__icontains='days')[:5] # Get 5 books containing the title war
+	# template_name = 'catalog/book_list.html'  # Specify your own template name/location
 
 	def get_queryset(self):
-		return Book.objects.filter(title_icontains='war')[:5]
+		return Book.objects.filter()
 
 
+class AuthorDetailView(generic.DetailView):
+    model = Author
+
+
+class AuthorListView(generic.ListView):
+	model = Author
+	paginate_by = 2
+
+	def get_queryset(self):
+		return Author.objects.filter()
 
 
 def index(request):
